@@ -27,7 +27,7 @@ def getSports():
     sports = []
     sports.append({"name": "CUSTOM EVENTS", "key": "custom"})
 
-    for data in response_data["data"]:
+    for data in response_data[]:
 
         if data["key"].startswith('soccer'):
             if data['key'] == "soccer_epl" or data['key'] == "soccer_england_league1" or data['key'] == "soccer_uefa_european_championship":
