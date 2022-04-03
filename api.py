@@ -22,18 +22,19 @@ collection_custom_events = db['custom_events']
 
 def getSports():
     response = requests.get("https://api.the-odds-api.com/v4/sports/?apiKey="+ oddsKey)
-    response_data = response.json()
+#    response_data = response.json()
+    data = response.json()
 
     sports = []
     sports.append({"name": "CUSTOM EVENTS", "key": "custom"})
 
-    for data in response_data[]:
+#    for data in response_data[]:
 
-        if data["key"].startswith('soccer'):
-            if data['key'] == "soccer_epl" or data['key'] == "soccer_england_league1" or data['key'] == "soccer_uefa_european_championship":
-                sports.append({"name": data['details'], "key": data['key']})
-        else:
+    if data["key"].startswith('soccer'):
+        if data['key'] == "soccer_epl" or data['key'] == "soccer_england_league1" or data['key'] == "soccer_uefa_european_championship":
             sports.append({"name": data['details'], "key": data['key']})
+    else:
+        sports.append({"name": data['details'], "key": data['key']})
 
 
     return sports
